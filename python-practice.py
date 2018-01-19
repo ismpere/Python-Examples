@@ -1,19 +1,62 @@
 # Escribe tu nombre
 
 def main():
-    array=[12,4,5,6,7,3,1,15]
-    array2 = quickSort(array)
-    for i in array2:
-        print (i)
+    sopa = ([6,2,9,5,9], [2,9,6,7,8], [4,2,8,8,7], [2,2,7,4,2], [2,2,3,2,2])
+    encuentra_maximo(sopa)
+
+def encuentra_maximo(sopa):
+    maximos = []
+    for i in range(3):
+        matriz = to_matriz(sopa, i)
+        maximos.append(encuentra_submaximos(matriz))
+
+    return tuple(maximos)
+
+def encuentra_submaximos(matriz):
+    impares = []
+    for i in range(len(matriz)):
+        n = 0
+        for j in range (len(matriz[i])):
+            n += matriz[i][j] *(10 ** len(matriz[i])-j)
+
+        n_invertido = int(str(n)[::-1])
+
+        if n%2 != 0:
+            impares.append(n)
+        if n_invertido%2 != 0:
+            impares.append(n_invertido)
+
+    impares_ordenados = quick_sort(impares)
+
+    if len(impares_ordenados)<4:
+        return tuple(impares)
+    else:
+        return tuple(impares[len(impares)-3:])
 
 
-def quickSort(array):
+# Devuelve la lista de tuplas como una matriz, con su dimension reducida en n unidades
+def to_matriz(lista, n):
+    # Inicializamos la matriz
+    matriz = []
+    for i in range(len(lista)):
+        matriz.append([])
+        for j in range(len(lista[i])):
+            matriz[i].append(None)
+
+    for i in range(len(lista)):
+        for j in range(len(lista[i])-n):
+            matriz[i][j] = lista[i][j]
+
+    return matriz
+
+
+def quick_sort(array):
     less = []
     equal = []
     greater = []
 
     if len(array) > 1:
-        # Elijo el pivote como el elemento central del arrau
+        # Elijo el pivote como el elemento central del array
         pivot = array[len(array)//2]
 
         # Comienzo a ordenar
@@ -26,7 +69,7 @@ def quickSort(array):
                 greater.append(x)
 
         # Devuelvo la concatenacion de los arrays ordenador less + equal + greater
-        return quickSort(less)+equal+quickSort(greater)
+        return quick_sort(less)+equal+quick_sort(greater)
     else:
         return array
 
