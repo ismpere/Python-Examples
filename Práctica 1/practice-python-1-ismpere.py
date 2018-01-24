@@ -1,4 +1,4 @@
-# Escribe tu nombre
+# Ismael Perez Martin
 
 # Devuelve el mayor numero de una matriz cuadrada de enteros, pasada como un string
 def encuentra_maximo(sopa):
