@@ -8,6 +8,7 @@ def encuentra_maximo(sopa):
     maximos = []
     for i in range(3):
         matriz = to_matriz(sopa, i)
+        print (matriz)
         maximos.append(encuentra_submaximos(matriz))
 
     return tuple(maximos)
@@ -36,16 +37,17 @@ def encuentra_submaximos(matriz):
 
 # Devuelve la lista de tuplas como una matriz, con su dimension reducida en n unidades
 def to_matriz(lista, n):
+    tam = len(lista)-n
     # Inicializamos la matriz
     matriz = []
-    for i in range(len(lista)):
+    for i in range(tam):
         matriz.append([])
-        for j in range(len(lista[i])):
+        for j in range(tam):
             matriz[i].append(None)
-
-    for i in range(len(lista)):
-        for j in range(len(lista[i])-n):
             matriz[i][j] = lista[i][j]
+            print (matriz[i][j], end="")
+        print("")
+    print("\n")
 
     return matriz
 
