@@ -50,7 +50,6 @@ def quick_sort(array):
 def encuentra_submaximos(matriz):
     numeros = []
     mayores = []
-    matriz = to_matriz(sopa)
 
     # Extraigo los elementos de las filas
     for i in range(len(matriz)):
@@ -92,7 +91,7 @@ def encuentra_submaximos(matriz):
         impares_ordenados = quick_sort(impares)
         mayores.extend(tres_maximos(impares_ordenados))
 
-    # Si no tenemos 3 mayores, compruebo con los numeros de menor dimension que la matriz hasta completar los 3, o acabase las posibilidades
+    # Si no tenemos 3 mayores, compruebo con los numeros de menor dimension que la matriz hasta completar los 3, o se acabasen las posibilidades
     if len(mayores)<3:
         for i in range (len(matriz)):
             numeros = [n//10 for n in numeros]
