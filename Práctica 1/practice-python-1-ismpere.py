@@ -47,7 +47,7 @@ def encuentra_maximo(sopa):
     # Si no hay ningun numero impar, compruebo con los de menor dimension que la matriz
     else:
         for i in range (len(matriz)):
-            numeros = [n//10 for n in numeros]
+            numeros = [n//10 for n in numeros] # Elimino el ultimo digito de todos los numeros de la matriz
             impares = [x for x in numeros if x%2!=0]
             if(len(impares)>0):
                 maximo = max(impares)

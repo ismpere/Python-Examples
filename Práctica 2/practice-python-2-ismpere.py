@@ -94,12 +94,12 @@ def encuentra_submaximos(matriz):
     # Si no tenemos 3 mayores, compruebo con los numeros de menor dimension que la matriz hasta completar los 3, o se acabasen las posibilidades
     if len(mayores)<3:
         for i in range (len(matriz)):
-            numeros = [n//10 for n in numeros]
+            numeros = [n//10 for n in numeros] # Elimino el ultimo digito de todos los numeros de la matriz
             impares = [x for x in numeros if x%2!=0]
             if(len(impares)>0):
                 impares_ordenados = quick_sort(impares)
                 if(len(mayores)+len(impares)>=3):
-                    mayores.extend(impares_ordenados[:(3-len(maximos))])
+                    mayores.extend(impares_ordenados[:(3-len(mayores))])
                     break
                 else:
                     mayores.extend(impares_ordenados)
@@ -121,9 +121,5 @@ def encuentra_maximo(sopa):
 
     return tuple(maximos)
 
-def main():
-    sopa = ([6,2,9,5,9], [2,9,6,7,8], [4,2,8,8,7], [2,2,7,4,2], [2,2,3,2,2])
-    print (encuentra_maximo(sopa))
-
-if __name__ == "__main__":	#Si el programa se ejecuta directamente o se pasa como argumento al interprete se ejecute el main
-    main()
+sopa = ([6,2,9,5,9], [2,9,6,7,8], [4,2,8,8,7], [2,2,7,4,2], [2,2,3,2,2])
+assert(encuentra_maximo(sopa) == ((96873, 62959, 42887), (9687, 8769, 7869), (987, 977, 967)))
