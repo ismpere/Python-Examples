@@ -9,14 +9,7 @@ def encuentra_maximo(sopa):
     # Extraigo los elementos de las filas
     for i in range(len(matriz)):
         n = int(''.join(str(j) for j in matriz[i])) # Paso los elementos de la fila a un entero
-
         n_invertido = int(str(n)[::-1]) # Invierto el numero que acabo de sacar de la fila, ya que es tambien una posible solucion
-
-        # Compruebo si el numero es impar y mayor que el maximo
-        if n%2 != 0 and n>maximo:
-            maximo = n
-        if n_invertido%2 != 0 and n_invertido>maximo:
-            maximo = n_invertido
 
         numeros.extend([n,n_invertido])
 
@@ -36,11 +29,6 @@ def encuentra_maximo(sopa):
         n = int(''.join(str(j) for j in aux)) # Paso los elementos de la columna a un entero
         n_invertido = int(str(n)[::-1]) # Invierto el numero que acabo de sacar de la columna, ya que es tambien una posible solucion
 
-        if n%2 != 0 and n>maximo:
-            maximo = n
-        if n_invertido%2 != 0 and n_invertido>maximo:
-            maximo = n_invertido
-
         numeros.extend([n,n_invertido])
 
     # Extraemos los enteros de las diagonales
@@ -50,16 +38,12 @@ def encuentra_maximo(sopa):
     d1_invertido = int(str(d1)[::-1]) # Invierto el numero que acabo de sacar de la primera diagonal, ya que es tambien una posible solucion
     d2_invertido = int(str(d2)[::-1]) # Invierto el numero que acabo de sacar de la segunda diagonal, ya que es tambien una posible solucion
 
-    if d1%2 != 0 and d1>maximo:
-        maximo = d1
-    if d2%2 != 0 and d2>maximo:
-        maximo = d2
-    if d1_invertido%2 != 0 and d1_invertido>maximo:
-        maximo = d1_invertido
-    if d2_invertido%2 != 0 and d2_invertido>maximo:
-        maximo = d2_invertido
-
     numeros.extend([d1,d2,d1_invertido, d2_invertido])
+
+    impares = [x for x in numeros if x%2!=0]
+    if(len(impares)>0):
+        maximo = max(impares)
+
     # Devuelvo el mayor numero encontrado en la matriz
     if maximo==-1:
         for i in range (len(matriz)):
