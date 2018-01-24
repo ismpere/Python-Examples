@@ -11,7 +11,7 @@ def encuentra_maximo(sopa):
         n = int(''.join(str(j) for j in matriz[i])) # Paso los elementos de la fila a un entero
         n_invertido = int(str(n)[::-1]) # Invierto el numero que acabo de sacar de la fila, ya que es tambien una posible solucion
 
-        numeros.extend([n,n_invertido])
+        numeros.extend([n,n_invertido]) # Aniado el numero obtenido en cada fila, y su inverso
 
     diag1 = []
     diag2 = []
@@ -29,7 +29,7 @@ def encuentra_maximo(sopa):
         n = int(''.join(str(j) for j in aux)) # Paso los elementos de la columna a un entero
         n_invertido = int(str(n)[::-1]) # Invierto el numero que acabo de sacar de la columna, ya que es tambien una posible solucion
 
-        numeros.extend([n,n_invertido])
+        numeros.extend([n,n_invertido]) # Aniado el numero obtenido en cada columna, y su inverso
 
     # Extraemos los enteros de las diagonales
     d1 = int(''.join(str(j) for j in diag1)) # Paso los elementos de la primera diagonal a un entero
@@ -38,20 +38,21 @@ def encuentra_maximo(sopa):
     d1_invertido = int(str(d1)[::-1]) # Invierto el numero que acabo de sacar de la primera diagonal, ya que es tambien una posible solucion
     d2_invertido = int(str(d2)[::-1]) # Invierto el numero que acabo de sacar de la segunda diagonal, ya que es tambien una posible solucion
 
-    numeros.extend([d1,d2,d1_invertido, d2_invertido])
+    numeros.extend([d1,d2,d1_invertido, d2_invertido]) # Aniado el numero obtenido en cada diagonal, y su inverso
 
+    # Me quedo solo con los impares y extraigo el mayor
     impares = [x for x in numeros if x%2!=0]
     if(len(impares)>0):
         maximo = max(impares)
-
-    # Devuelvo el mayor numero encontrado en la matriz
-    if maximo==-1:
+    # Si no hay ningun numero impar, compruebo con los de menor dimension que la matriz
+    else:
         for i in range (len(matriz)):
             numeros = [n//10 for n in numeros]
             impares = [x for x in numeros if x%2!=0]
             if(len(impares)>0):
                 maximo = max(impares)
                 break
+
     return maximo
 
 
