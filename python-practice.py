@@ -1,4 +1,4 @@
-# Escribe tu nombre
+# Ismael Perez Martin
 
 # Devuelve la lista de tuplas como una matriz cuadrada, desde la fila y columnas iniciales, con una dimension indicada
 def to_matriz(lista, fIni, cIni, dim):
@@ -102,12 +102,3 @@ def main():
 
 if __name__ == "__main__":	#Si el programa se ejecuta directamente o se pasa como argumento al interprete se ejecute el main
     main()
-
-
-
-# ********* EXPLICACION *********
-# Se usan listas ya que en las tuplas y diccionarios no podemos aniadir elementos, y en los conjuntos tenemos mayor dificultad
-# para iterar sobre ellos.
-# Uso la tecnica divide y venceras en el algoritmo de ordenadion quick_sort, ya que ordeno por separado los elementos mayores
-# y menores que el pivote.
-# El codigo es modular, uso varias funciones y se llaman entre ellas.
