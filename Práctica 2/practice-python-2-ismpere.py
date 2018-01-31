@@ -94,7 +94,9 @@ def encuentra_submaximos(matriz):
     # Si no tenemos 3 mayores, compruebo con los numeros de menor dimension que la matriz hasta completar los 3, o se acabasen las posibilidades
     if len(mayores)<3:
         for i in range (len(matriz)):
-            numeros = [n//10 for n in numeros] # Elimino el ultimo digito de todos los numeros de la matriz
+            aux = [n//10 for n in numeros] # Elimino el ultimo digito de todos los numeros de la matriz
+            aux.extend([n%(10**(len(str(n))-1)) for n in numeros]) # Aniado los numeros eliminando el primer digito de cada numero
+            numeros = aux
             impares = [x for x in numeros if x%2!=0]
             if(len(impares)>0):
                 impares_ordenados = quick_sort(impares)
@@ -123,3 +125,6 @@ def encuentra_maximo(sopa):
 
 sopa = ([6,2,9,5,9], [2,9,6,7,8], [4,2,8,8,7], [2,2,7,4,2], [2,2,3,2,2])
 assert(encuentra_maximo(sopa) == ((96873, 62959, 42887), (9687, 8769, 7869), (987, 977, 967)))
+
+sopa1 = ([7,2,9,6,9], [2,8,6,7,9], [5,2,8,8,6], [2,2,6,4,3], [3,3,4,1,1])
+assert(encuentra_maximo(sopa1) == ((99631, 97823, 96927), (9963, 9863, 9631), (985, 969, 963)))
